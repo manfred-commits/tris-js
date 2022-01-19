@@ -1,0 +1,60 @@
+/* reset rules */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* general rules */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+button{
+    background-color: white;
+    border: 1px solid black;
+    font-size: 6rem;
+}
+/* /general rules */
+
+/* container section */
+.container_tris{
+    width: 60%;
+    height: 60%;
+    grid-template-columns: calc(100% /3) calc(100% /3) calc(100% /3);
+    grid-template-rows: calc(100% /3) calc(100% /3) calc(100% /3);
+    display: grid;
+
+}
+.container_tris .top_left_angle,
+.container_tris .top_right_angle,
+.container_tris .top_center_angle
+{
+    border-top:0;
+}
+.container_tris .top_left_angle{
+    border-left: 0;
+}
+.container_tris .top_right_angle{
+    border-right: 0;
+}
+.container_tris .middle_left_angle{
+    border-left: 0;
+}
+.container_tris .middle_right_angle{
+    border-right: 0;
+}
+.container_tris .bottom_left_angle,
+.container_tris .bottom_right_angle,
+.container_tris .bottom_center_angle
+{
+    border-bottom:0;
+}
+.container_tris .bottom_left_angle{
+    border-left: 0;
+}
+.container_tris .bottom_right_angle{
+    border-right: 0;
+}
