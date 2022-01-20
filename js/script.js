@@ -30,7 +30,7 @@ containerTris.addEventListener("mouseout", function(event){
 containerTris.addEventListener('click', 
     function(event){
         console.log("c");
-        if(event.target.innerHTML==trisPointer ){
+        if(event.target.innerHTML==trisPointer && !clickedCells.includes(event.target.value)){
             event.target.innerHTML=trisPointer;
             clickedCells.push(event.target.value);
             console.log(clickedCells);
