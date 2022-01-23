@@ -4,23 +4,30 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- link to font family -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+        <!-- /link to font family -->
+
         <!-- link to stylesheet -->
         <link rel="stylesheet" href="./css/style.css">
+        <!-- /link to stylesheet -->
         <title>tris</title>
     </head>
     <body>
-        
+        <h1 id="tris_result">Tris</h1>
         <div class="container_tris">
             
-            <button class="top_left_angle" value="1"></button>
-            <button class="top_center_angle" value="2"></button>
-            <button class="top_right_angle" value="3"></button>
-            <button class="middle_left_angle" value="4"></button>
-            <button class="middle_center_angle" value="5"></button>
-            <button class="middle_right_angle" value="6"></button>
-            <button class="bottom_left_angle" value="7"></button>
-            <button class="bottom_center_angle" value="8"></button>
-            <button class="bottom_right_angle" value="9"></button>
+            <button data-x="0" data-y="0" class="top_left_angle" value="1"></button>
+            <button data-x="0" data-y="1" class="top_center_angle" value="2"></button>
+            <button data-x="0" data-y="2" class="top_right_angle" value="3"></button>
+            <button data-x="1" data-y="0" class="middle_left_angle" value="4"></button>
+            <button data-x="1" data-y="1" class="middle_center_angle" value="5"></button>
+            <button data-x="1" data-y="2" class="middle_right_angle" value="6"></button>
+            <button data-x="2" data-y="0" class="bottom_left_angle" value="7"></button>
+            <button data-x="2" data-y="1" class="bottom_center_angle" value="8"></button>
+            <button data-x="2" data-y="2" class="bottom_right_angle" value="9"></button>
             
         </div>
 
