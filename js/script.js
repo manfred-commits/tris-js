@@ -31,6 +31,8 @@ let win= null;
 
 let aiTurn=true;
 
+let firstTurn=true;
+
 // event listener on mouseover, to add the temporary tris pointer
 containerTris.addEventListener('mouseover',mouseOver);
 
@@ -94,20 +96,20 @@ function mouseClick(event){
         console.log(cells);
 
         // random ai turn
-        // if(win==null){
-        //     let randomX=0;
-        //     do{
-        //         randomX=parseInt(getRandomArbitrary(1, 9));
-        //     }while(clickedCells.includes(randomX) && clickedCells.length<8);
-        //     if(!clickedCells.includes(randomX)){
-        //         document.querySelector("button[value='"+randomX+"']").innerHTML=ai;
-        //         clickedCells.push(parseInt(randomX));
+        if(firstTurn||aiTurn){
+            let randomX=0;
+            do{
+                randomX=parseInt(getRandomArbitrary(1, 9));
+            }while(clickedCells.includes(randomX) && clickedCells.length<8);
+            if(!clickedCells.includes(randomX)){
+                document.querySelector("button[value='"+randomX+"']").innerHTML=ai;
+                clickedCells.push(parseInt(randomX));
         
-        //         cells[document.querySelector("button[value='"+randomX+"']").dataset.x][document.querySelector("button[value='"+randomX+"']").dataset.y]=ai;
-        //         document.querySelector("button[value='"+randomX+"']").classList.add("not-allowed");
-        //     }
-
-        // }
+                cells[document.querySelector("button[value='"+randomX+"']").dataset.x][document.querySelector("button[value='"+randomX+"']").dataset.y]=ai;
+                document.querySelector("button[value='"+randomX+"']").classList.add("not-allowed");
+            }
+            firstTurn=false;
+        }
 
 
     }
@@ -187,13 +189,18 @@ function blockingWinningAiMove() {
            if(numeriCells[i][0]==1) {
                 numeriCells[i][0]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+
            }else if(numeriCells[i][1]==1){
                 numeriCells[i][1]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+
 
            }else if(numeriCells[i][2]==1){
                 numeriCells[i][2]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }
         }
@@ -202,14 +209,17 @@ function blockingWinningAiMove() {
             if(numeriCells[0][i]==1) {
                 numeriCells[0][i]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[1][i]==1){
                 numeriCells[1][i]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[2][i]==1){
                 numeriCells[2][i]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }
         }
@@ -218,14 +228,17 @@ function blockingWinningAiMove() {
             if(numeriCells[0][0]==1) {
                 numeriCells[0][0]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[1][1]==1){
                 numeriCells[1][1]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[2][2]==1){
                 numeriCells[2][2]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }
             
@@ -234,38 +247,89 @@ function blockingWinningAiMove() {
             if(numeriCells[2][0]==1) {
                 numeriCells[2][0]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[1][1]==1){
                 numeriCells[1][1]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }else if(numeriCells[2][2]==1){
                 numeriCells[0][2]=3;
                 aiTurn=false;
+                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
 
            }
             
         }
 
+        
         //winning move
 
         // check orizonatally
-        if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==9){
+        // if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==9){
+        //     if(numeriCells[i][0]==1) {
+        //         numeriCells[i][0]=3;
+        //         aiTurn=false;
+        //    }else if(numeriCells[i][1]==1){
+        //         numeriCells[i][1]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[i][2]==1){
+        //         numeriCells[i][2]=3;
+        //         aiTurn=false;
+
+        //    }
+        // }
+        // // check vertically
+        // if(numeriCells[0][i]*numeriCells[1][i]*cells[2][i]==9){
+        //     if(numeriCells[0][i]==1) {
+        //         numeriCells[0][i]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[1][i]==1){
+        //         numeriCells[1][i]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[2][i]==1){
+        //         numeriCells[2][i]=3;
+        //         aiTurn=false;
+
+        //    }
+        // }
+        // // check diagonally
+        // if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==9) ){
+        //     if(numeriCells[0][0]==1) {
+        //         numeriCells[0][0]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[1][1]==1){
+        //         numeriCells[1][1]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[2][2]==1){
+        //         numeriCells[2][2]=3;
+        //         aiTurn=false;
+
+        //    }
             
-        }
-        // check vertically
-        if(numeriCells[0][i]*numeriCells[1][i]*cells[2][i]==9){
+        // }
+        // if((numeriCells[2][0]*numeriCells[1][1]*numeriCells[0][2]==9) ){
+        //     if(numeriCells[2][0]==1) {
+        //         numeriCells[2][0]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[1][1]==1){
+        //         numeriCells[1][1]=3;
+        //         aiTurn=false;
+
+        //    }else if(numeriCells[2][2]==1){
+        //         numeriCells[0][2]=3;
+        //         aiTurn=false;
+
+        //    }
             
-        }
-        // checkdiagonally
-        if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==9) ){
-        
-            
-        }
-        if((numeriCells[2][0]*numeriCells[1][1]*numeriCells[0][2]==9) ){
-            
-            
-        }
+        // }
         
     }
     for(let i=0;i<cells.length;i++){
