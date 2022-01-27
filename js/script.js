@@ -167,7 +167,8 @@ function removeEventTris(cells,index){
 
 
 function blockingWinningAiMove() {
-
+    let winning=true;
+    let blocking= true;
     for(let i=0;i<cells.length;i++){
         for(let j=0; j<cells[i].length;j++){
             if(cells[i][j]=='X'){ 
@@ -182,66 +183,144 @@ function blockingWinningAiMove() {
     for(let i=0;i<cells.length;i++){
         for(let j=0; j<cells[i].length;j++){
 
+        if(blocking){
 
-        // blocking move
-        // check orizonatally
-        if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==25 && aiTurn){
-           if(numeriCells[i][0]==1) {
-                numeriCells[i][0]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+            // blocking move
+            // check orizonatally
+            if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==25 && aiTurn){
+               if(numeriCells[i][0]==1) {
+                    numeriCells[i][0]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+               }else if(numeriCells[i][1]==1){
+                    numeriCells[i][1]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+    
+               }else if(numeriCells[i][2]==1){
+                    numeriCells[i][2]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }
+            }
+            // check vertically
+            if(numeriCells[0][i]*numeriCells[1][i]*numeriCells[2][i]==25 && aiTurn){
+                if(numeriCells[0][i]==1) {
+                    numeriCells[0][i]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }else if(numeriCells[1][i]==1){
+                    numeriCells[1][i]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }else if(numeriCells[2][i]==1){
+                    numeriCells[2][i]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }
+            }
+            // check diagonally
+            if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==25 && aiTurn) ){
+                if(numeriCells[0][0]==1) {
+                    numeriCells[0][0]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }else if(numeriCells[1][1]==1){
+                    numeriCells[1][1]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }else if(numeriCells[2][2]==1){
+                    numeriCells[2][2]=3;
+                    aiTurn=false;
+                    clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
+                    winning=false;
+    
+               }
+                
+            }
+        }else if(winning){
+            //winning move
 
-           }else if(numeriCells[i][1]==1){
-                numeriCells[i][1]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-
-           }else if(numeriCells[i][2]==1){
-                numeriCells[i][2]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }
-        }
-        // check vertically
-        if(numeriCells[0][i]*numeriCells[1][i]*numeriCells[2][i]==25 && aiTurn){
-            if(numeriCells[0][i]==1) {
-                numeriCells[0][i]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }else if(numeriCells[1][i]==1){
-                numeriCells[1][i]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }else if(numeriCells[2][i]==1){
-                numeriCells[2][i]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }
-        }
-        // check diagonally
-        if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==25 && aiTurn) ){
-            if(numeriCells[0][0]==1) {
-                numeriCells[0][0]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }else if(numeriCells[1][1]==1){
-                numeriCells[1][1]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }else if(numeriCells[2][2]==1){
-                numeriCells[2][2]=3;
-                aiTurn=false;
-                clickedCells.push(parseInt(document.querySelector("button[data-x='"+i+"'][data-y='"+j+"']").value));
-
-           }
-            
+            //check orizonatally
+            if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==9){
+                if(numeriCells[i][0]==1) {
+                    numeriCells[i][0]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[i][1]==1){
+                    numeriCells[i][1]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[i][2]==1){
+                    numeriCells[i][2]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }
+            }
+            // check vertically
+            if(numeriCells[0][i]*numeriCells[1][i]*cells[2][i]==9){
+                if(numeriCells[0][i]==1) {
+                    numeriCells[0][i]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[1][i]==1){
+                    numeriCells[1][i]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[2][i]==1){
+                    numeriCells[2][i]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }
+            }
+            // check diagonally
+            if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==9) ){
+                if(numeriCells[0][0]==1) {
+                    numeriCells[0][0]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[1][1]==1){
+                    numeriCells[1][1]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[2][2]==1){
+                    numeriCells[2][2]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }
+                
+            }
+            if((numeriCells[2][0]*numeriCells[1][1]*numeriCells[0][2]==9) ){
+                if(numeriCells[2][0]==1) {
+                    numeriCells[2][0]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[1][1]==1){
+                    numeriCells[1][1]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }else if(numeriCells[2][2]==1){
+                    numeriCells[0][2]=3;
+                    aiTurn=false;
+                    blocking=false;
+            }
+                
+            }
         }
         if((numeriCells[2][0]*numeriCells[1][1]*numeriCells[0][2]==25 && aiTurn) ){
             if(numeriCells[2][0]==1) {
@@ -264,72 +343,7 @@ function blockingWinningAiMove() {
         }
 
         
-        //winning move
-
-        // check orizonatally
-        // if(numeriCells[i][0]*numeriCells[i][1] *numeriCells[i][2]==9){
-        //     if(numeriCells[i][0]==1) {
-        //         numeriCells[i][0]=3;
-        //         aiTurn=false;
-        //    }else if(numeriCells[i][1]==1){
-        //         numeriCells[i][1]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[i][2]==1){
-        //         numeriCells[i][2]=3;
-        //         aiTurn=false;
-
-        //    }
-        // }
-        // // check vertically
-        // if(numeriCells[0][i]*numeriCells[1][i]*cells[2][i]==9){
-        //     if(numeriCells[0][i]==1) {
-        //         numeriCells[0][i]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[1][i]==1){
-        //         numeriCells[1][i]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[2][i]==1){
-        //         numeriCells[2][i]=3;
-        //         aiTurn=false;
-
-        //    }
-        // }
-        // // check diagonally
-        // if((numeriCells[0][0]*numeriCells[1][1]*numeriCells[2][2]==9) ){
-        //     if(numeriCells[0][0]==1) {
-        //         numeriCells[0][0]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[1][1]==1){
-        //         numeriCells[1][1]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[2][2]==1){
-        //         numeriCells[2][2]=3;
-        //         aiTurn=false;
-
-        //    }
-            
-        // }
-        // if((numeriCells[2][0]*numeriCells[1][1]*numeriCells[0][2]==9) ){
-        //     if(numeriCells[2][0]==1) {
-        //         numeriCells[2][0]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[1][1]==1){
-        //         numeriCells[1][1]=3;
-        //         aiTurn=false;
-
-        //    }else if(numeriCells[2][2]==1){
-        //         numeriCells[0][2]=3;
-        //         aiTurn=false;
-
-        //    }
-            
-        // }
+        
         
     }
     for(let i=0;i<cells.length;i++){
